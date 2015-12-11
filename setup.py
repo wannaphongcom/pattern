@@ -14,13 +14,21 @@ def version():
         for line in input_file:
             if line.startswith('__version__'):
                 return parse(line).body[0].value.s
-
-install_requires = ["beautifulsoup4",
+if version_info[0] == 2:
+    install_requires = ["beautifulsoup4",
                     "cherrypy",
                     "docx",
                     "feedparser",
-                    "pdfminer" if version_info[0] == 2 else "pdfminer3k",
+                    "pdfminer",
                     "simplejson"]
+else:
+    install_requires = ["beautifulsoup4",
+                    "cherrypy",
+                    "docx",
+                    "feedparser",
+                    "pdfminer3k",
+                    "simplejson",
+                    "sgmllib3k"]
 
 setup(
     name="pattern",
